@@ -448,6 +448,8 @@ static bool ParseCodeGenArgs(CodeGenOptions &Opts, ArgList &Args, InputKind IK,
   Opts.TrapFuncName = Args.getLastArgValue(OPT_ftrap_function_EQ);
   Opts.UseInitArray = Args.hasArg(OPT_fuse_init_array);
 
+  Opts.ForwardControlFlowIntegrity = Args.hasArg(OPT_ffcfi);
+
   Opts.FunctionSections = Args.hasFlag(OPT_ffunction_sections,
                                        OPT_fno_function_sections, false);
   Opts.DataSections = Args.hasFlag(OPT_fdata_sections,

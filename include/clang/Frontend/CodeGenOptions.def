@@ -60,6 +60,7 @@ CODEGENOPT(EmitOpenCLArgMetadata , 1, 0) ///< Emit OpenCL kernel arg metadata.
 ENUM_CODEGENOPT(FPContractMode, FPContractModeKind, 2, FPC_On)
 CODEGENOPT(ForbidGuardVariables , 1, 0) ///< Issue errors if C++ guard variables
                                         ///< are required.
+CODEGENOPT(ForwardControlFlowIntegrity , 1, 0) ///< Set when -ffcfi is enabled.
 CODEGENOPT(FunctionSections  , 1, 0) ///< Set when -ffunction-sections is enabled.
 CODEGENOPT(InstrumentFunctions , 1, 0) ///< Set when -finstrument-functions is
                                        ///< enabled.

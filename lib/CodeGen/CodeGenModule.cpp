@@ -680,6 +680,11 @@ void CodeGenModule::SetLLVMFunctionAttributes(const Decl *D,
   ConstructAttributeList(Info, D, AttributeList, CallingConv, false);
   F->setAttributes(llvm::AttributeSet::get(getLLVMContext(), AttributeList));
   F->setCallingConv(static_cast<llvm::CallingConv::ID>(CallingConv));
+  if (CodeGenOpts.ForwardControlFlowIntegrity) {
+    F->setUnnamedAddr(true);
+    F->addFnAttr(llvm::Attribute::JumpTable);
+  }
+
 }
 
 /// Determines whether the language options require us to model

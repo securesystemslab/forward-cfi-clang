@@ -1537,6 +1537,11 @@ static void AddGoldPlugin(const ToolChain &ToolChain, const ArgList &Args,
   std::string CPU = getCPUName(Args, ToolChain.getTriple());
   if (!CPU.empty())
     CmdArgs.push_back(Args.MakeArgString(Twine("-plugin-opt=mcpu=") + CPU));
+
+  // Set up forward-edge control-flow integrity if requested.
+  if (Args.hasArg(options::OPT_ffcfi))
+    CmdArgs.push_back(Args.MakeArgString("-plugin-opt=-fcfi"));
+
 }
 
 static void getX86TargetFeatures(const Driver & D,
@@ -2819,6 +2824,9 @@ void Clang::ConstructJob(Compilation &C, const JobAction &JA,
   // Handle segmented stacks.
   if (Args.hasArg(options::OPT_fsplit_stack))
     CmdArgs.push_back("-split-stacks");
+
+  if (Args.hasArg(options::OPT_ffcfi))
+    CmdArgs.push_back("-ffcfi");
 
   // If -Ofast is the optimization level, then -ffast-math should be enabled.
   // This alias option is being used to simplify the getLastArg logic.
